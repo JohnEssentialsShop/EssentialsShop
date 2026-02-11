@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Gaming RGB Headset - PorkEssentials</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; color: #1c1e21; }
+        .product-container { background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 500px; text-align: center; border: 1px solid #ddd; }
+        .badge { background: #e7f3ff; color: #0077cc; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; }
+        h1 { margin: 20px 0 10px; font-size: 28px; }
+        .price { font-size: 32px; font-weight: 800; color: #0077cc; margin-bottom: 20px; }
+        .description { line-height: 1.6; color: #606770; margin-bottom: 30px; }
+        .specs { text-align: left; background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 30px; font-size: 14px; }
+        .specs li { margin-bottom: 8px; }
+        .btn-add { background: #0077cc; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; transition: background 0.2s; }
+        .btn-add:hover { background: #005fa3; }
+        .footer-note { margin-top: 15px; font-size: 12px; color: #90949c; }
+    </style>
+</head>
+<body>
 
+<div class="product-container">
+    <span class="badge">Best Seller</span>
+    <h1>Pro Gaming RGB Headset</h1>
+    <div class="price">$10.99</div>
+    
+    <p class="description">
+        Experience ultra-low latency audio and crystal clear communication. Designed for marathon gaming sessions with breathable memory foam ear cups.
+    </p>
+
+    <div class="specs">
+        <ul style="list-style: none; padding: 0;">
+            <li>🎧 <strong>Audio:</strong> 7.1 Virtual Surround Sound</li>
+            <li>🎙️ <strong>Mic:</strong> Detachable Noise-Cancelling</li>
+            <li>🌈 <strong>RGB:</strong> Customizable 16.8M Colors</li>
+            <li>🔋 <strong>Battery:</strong> 24-hour Wireless Life</li>
+        </ul>
+    </div>
+
+    <button class="btn-add" id="addToCartBtn">Add to Cart & Continue</button>
+    <p class="footer-note">Adding this item will automatically update your main shop cart.</p>
+</div>
+
+<script>
+    // This MUST match the channel name in your index.html
+    const cartChannel = new BroadcastChannel('shop_cart_channel');
+
+    document.getElementById('addToCartBtn').onclick = () => {
+        // Send message to main tab
+        cartChannel.postMessage({ 
+            action: 'add', 
+            productId: 'p1' 
+        });
+
+        // Small delay to ensure message is sent before closing
+        setTimeout(() => {
+            window.close();
+        }, 150);
+    };
+</script>
+
+</body>
+</html>
